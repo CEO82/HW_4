@@ -6,11 +6,13 @@ if __name__ != '__main__':
 
 import sys
 
+
 def salary():
     args = sys.argv[1:]
 
     if len(args) != 3:
-        print(f'\nYou need to enter 3 arguments: worked hours, hour rate and extra bonus\nPlease restart the program and enter arguments')
+        print(
+            f'\nYou need to enter 3 arguments: worked hours, hour rate and extra bonus\nPlease restart the program and enter arguments')
         return
 
     w_hours, h_rate, ex_bonus = args
@@ -27,7 +29,9 @@ def salary():
         return
 
 
-
-
 if __name__ == '__main__':
-    print(f'The salary for the Emploee will be: {salary()} UK Pounds' )
+
+    result = salary()
+
+    if result is not None:
+        print(f'The salary for the Emploee will be: {result} UK Pounds')
