@@ -20,10 +20,14 @@ def salary():
         hour_rate = float(h_rate)
         extra_bonus = float(ex_bonus)
 
+        return work_hours * hour_rate + extra_bonus
+
     except:
         print(f'\nYou are entered wrong value, please repeat enter again')
+        return
+
 
 
 
 if __name__ == '__main__':
-    salary()
+    print(f'The salary for the Emploee will be: {salary()} UK Pounds' )
