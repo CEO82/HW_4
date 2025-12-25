@@ -4,7 +4,7 @@
 """
 
 def multiple_of_20_21():
-    return [n for n in range(20, 241) if n % 20 == 0 or n % 21 == 0]
+    return (n for n in range(20, 241) if n % 20 == 0 or n % 21 == 0)
 
 if __name__ == '__main__':
-    print(f'\nThe Result list is: {multiple_of_20_21()}')
+    print(f'\nThe Result list is: {list(multiple_of_20_21())}')
