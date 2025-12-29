@@ -1,16 +1,15 @@
-import random
+def simple_gen():
+    yield 1
+    yield 2
+    yield 3
 
-def check_list():
-    init_list = [random.randint(1, 100) for _ in range(15)]
-    print(f'\nInitial list is: {init_list}')
+nxt = next(simple_gen())
+nxt2 = next(simple_gen())
 
-    result_list = [
-        curr for prev, curr in zip(init_list, init_list[1:])
-        if curr > prev
-    ]
+g = simple_gen()
+nxt_g = next(g)
 
-    return result_list
+print(f'{nxt_g} {nxt_g}')
+print(f'{nxt_g} {nxt_g}')
 
-
-if __name__ == '__main__':
-    print(f'\nThe Result list is: {check_list()}')
+##print(f'{next(g)}')

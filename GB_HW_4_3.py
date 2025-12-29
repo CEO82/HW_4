@@ -8,3 +8,4 @@ def multiple_of_20_21():
 
 if __name__ == '__main__':
     print(f'\nThe Result list is: {list(multiple_of_20_21())}')
+    print(f'\nThe Result list is: {list(multiple_of_20_21())}')
