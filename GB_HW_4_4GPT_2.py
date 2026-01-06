@@ -2,15 +2,19 @@
 Пример исходного списка: [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11].
 Результат: [23, 1, 3, 10, 4, 11]
 """
-
 import random
 from collections import Counter
+from typing import Iterable, Iterator
 
-def match_check(init_list):
-
-    counted_list = Counter(init_list)
-
-    return (y for y in init_list if counted_list[y] == 1)
+def unique_only(seq: Iterable[int]) -> Iterator[int]:
+    counts = Counter(seq)
+    for x in seq:
+        if counts[x] == 1:
+            yield x
 
 if __name__ == '__main__':
-    print(list(match_check([random.randint(1, 100) for _ in range(30)])))
+    gen_res = unique_only([random.randint(1, 100) for _ in range(30)])
+    print(f'not for {next(gen_res)}')
+    print(f'not for {next(gen_res)}')
+    for x in gen_res:
+        print(x)
