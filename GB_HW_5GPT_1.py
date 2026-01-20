@@ -8,9 +8,10 @@ def reduce_list():
 
     return reduce(
         lambda a,b: a * b,
-        [x for x in range(100, 1001) if x % 2 == 0]
+        (x for x in range(100, 1001, 2)), 1
     )
 
 
 if __name__ == '__main__':
     print(reduce_list())
+
