@@ -7,6 +7,7 @@
 завершаем цикл. Вторым пунктом необходимо предусмотреть условие, при котором
 повторение элементов списка прекратится.
 '''
+from decimal import Decimal
 from itertools import cycle, count, takewhile
 
 def number_gen():
@@ -27,6 +28,10 @@ def number_gen():
             continue
         num_list = takewhile(lambda x: x <= finish_num, count(start_num, generator_step))
         print(list(num_list))
+
+def in_out_fr_num_gen():
+
+    pass
 
 
 
