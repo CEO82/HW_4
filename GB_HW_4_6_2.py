@@ -12,7 +12,8 @@ from decimal import InvalidOperation
 from itertools import cycle, count, takewhile
 
 def number_gen(start_num, step, finish_num):
-        return takewhile(lambda x: x <= finish_num, count(start_num, step))
+    return takewhile(lambda x: x <= finish_num if step > 0 else x >= finish_num, count(start_num, step))
+
 
 
 def in_out_for_num_gen():
@@ -56,4 +57,4 @@ def in_out_for_num_gen():
 
 if __name__ == '__main__':
     print()
-    x = in_out_for_num_gen()
+    in_out_for_num_gen()
