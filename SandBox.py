@@ -1,28 +1,28 @@
-from itertools import count, takewhile
+'''from itertools import cycle, count, takewhile
+
+def traffik_light():
+    ligth_list = ['Red', 'Yellow', 'Green']
+    return cycle(ligth_list)
+
+rep = 6
+for i in traffik_light():
+    if rep > 0:
+        rep -= 1
+        print(i)
+    else:
+        break'''
+
+from itertools import cycle, count, takewhile
+def traffic_light():
+    light_list = ['Red', 'Yellow', 'Green']
+    # Склеиваем бесконечный цикл со счетчиком 1, 2, 3...
+    combined = zip(count(1), cycle(light_list))
+
+    # Говорим: "Бери, пока номер шага (x[0]) <= 6"
+    return takewhile(lambda x: x[0] <= 6, combined)
 
 
-# Логика итератора (отдельно)
-def my_count_iterator(start, step, stop):
-    # Возвращаем объект итератора
-    return takewhile(lambda x: x <= stop, count(start, step))
+for step, color in traffic_light():
+    print(f"Шаг {step}: {color}")
 
 
-def run_task_1():
-    print("--- Задание 1: Генератор чисел ---")
-    try:
-        start = float(input("Старт: "))
-        step = float(input("Шаг: "))
-        stop = float(input("Финиш: "))
-
-        gen = my_count_iterator(start, step, stop)
-
-        # Печатаем элементы по одному, как и положено итератору
-        for num in gen:
-            print(num, end=" ")
-        print("\nГотово!")
-    except ValueError:
-        print("Ошибка: нужно вводить числа.")
-
-
-if __name__ == '__main__':
-    run_task_1()

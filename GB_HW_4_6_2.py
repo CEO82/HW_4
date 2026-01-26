@@ -51,6 +51,9 @@ def in_out_for_num_gen():
             print(f'| {num}', end=' | ')
 
 
+def cycle_traffik_light():
+
+    pass
 
 
 
