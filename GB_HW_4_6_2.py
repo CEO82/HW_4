@@ -8,10 +8,14 @@
 повторение элементов списка прекратится.
 '''
 from decimal import Decimal
+from decimal import InvalidOperation
 from itertools import cycle, count, takewhile
 
-def number_gen():
+def number_gen(start_num, step, finish_num):
+        return takewhile(lambda x: x <= finish_num, count(start_num, step))
 
+
+def in_out_for_num_gen():
     while True:
         print(f'\nThis function is for number generation')
         start_finish_check = input(f'\nIf you want to start this function please enter any symbol, \nif you want o finish this function enter q or Q, next function will start automatically, \nYour choice: ').lower()
@@ -19,22 +23,31 @@ def number_gen():
             print(f'\nProgram is finished by user choice')
             break
         try:
-            start_num = float(input(f'Please enter a starting number: '))
-            generator_step = float(input(f'Please enter a number for generator step: '))
-            finish_num = float(input(f'Please enter a last number: '))
+            start_num = Decimal(input(f'Please enter a starting number: '))
+            step = Decimal(input(f'Please enter a number for generator step: '))
+            finish_num = Decimal(input(f'Please enter a last number: '))
+            if step == 0:
+                print(f'You are entered step = 0, this is forbiden, please repeat input')
+                continue
+            elif step < 0 and finish_num > start_num:
+                print(f'You are entered negative step and finish number greater than start number \nIt is prohibited, please repeat input')
+                continue
+            elif step > 0 and finish_num < start_num:
+                print(
+                    f'You are entered positive step and finish number smaller than start number \nIt is prohibited, please repeat input')
+                continue
 
-        except ValueError:
+
+
+
+        except (ValueError, InvalidOperation):
             print(f'\nYou are entered something wrong please repeat input ')
             continue
-        num_list = takewhile(lambda x: x <= finish_num, count(start_num, generator_step))
-        print(list(num_list))
-
-def in_out_fr_num_gen():
-
-    pass
 
 
 
+        for num in number_gen(start_num,step, finish_num):
+            print(f'| {num}', end=' | ')
 
 
 
@@ -43,4 +56,4 @@ def in_out_fr_num_gen():
 
 if __name__ == '__main__':
     print()
-    x = number_gen()
+    x = in_out_for_num_gen()
