@@ -14,8 +14,6 @@ from itertools import cycle, count, takewhile
 def number_gen(start_num, step, finish_num):
     return takewhile(lambda x: x <= finish_num if step > 0 else x >= finish_num, count(start_num, step))
 
-
-
 def in_out_for_num_gen():
     while True:
         print(f'\nThis function is for number generation')
@@ -38,26 +36,23 @@ def in_out_for_num_gen():
                     f'You are entered positive step and finish number smaller than start number \nIt is prohibited, please repeat input')
                 continue
 
-
-
-
         except (ValueError, InvalidOperation):
             print(f'\nYou are entered something wrong please repeat input ')
             continue
-
-
 
         for num in number_gen(start_num,step, finish_num):
             print(f'| {num}', end=' | ')
 
 
 def cycle_traffik_light():
-
-    pass
-
-
+    trafic_light_list = ['Red', 'Yellow', 'Green']
+    mixed = zip(count(1), cycle(trafic_light_list))
+    combined = takewhile(lambda x: x[0] <= 6, mixed)
+    for counter, light in combined:
+        print(f'|{counter}| |{light}|')
 
 
 if __name__ == '__main__':
-    print()
+
     in_out_for_num_gen()
+    cycle_traffik_light()
