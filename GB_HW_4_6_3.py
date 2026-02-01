@@ -25,19 +25,24 @@ def print_for_generators(generator_obj):
         print(f'{p_o}')
 
 def continue_or_not(function_name: str):
-    while True:
-        user_wish = input(f'If you want to start or continue function {function_name} input any symbol \nif you want to finish function input "q" or "Q"')
-        if user_wish.lower() == 'q':
-            print(f'Function {function_name} is stopped ')
-            return 'stop'
+    user_wish = input(
+        f'If you want to start or continue function {function_name} input any symbol \nif you want to finish function input "q" or "Q"')
+    if user_wish.lower() == 'q':
+        return False
+    else:
+        return True
 
-        else:
-            continue
+def input_for_count():
 
-
+    pass
 
 def count_funct():
-    
+    function_name = 'count function'
+    while True:
+        if continue_or_not(function_name) is False:
+            print(f'Function {function_name} is finished')
+        else:
+
 
     pass
 
