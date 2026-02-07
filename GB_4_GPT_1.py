@@ -7,7 +7,7 @@
 
 
 def num_generator(last_numb: int):
-    for n in range(1,last_numb + 1):
+    for n in range(1, last_numb + 1):
         yield n
 
 def usr_input():
