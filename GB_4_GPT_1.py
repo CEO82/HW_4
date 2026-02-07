@@ -7,7 +7,7 @@
 
 
 def num_generator(last_numb: int):
-    for n in range(1,last_numb):
+    for n in range(1,last_numb + 1):
         yield n
 
 def usr_input():
@@ -16,6 +16,7 @@ def usr_input():
             last_numb = int(input(f'Enter last number: '))
             if last_numb > 1:
                 return last_numb
+
             else:
                 print(f'\nWrong enter, repeat\n')
                 continue
@@ -23,11 +24,15 @@ def usr_input():
             print(f'\nWrong enter, repeat\n')
             continue
 
+def generators_print(gen_obj):
+    for p in gen_obj:
+        print(p)
 
+
+def gpt_gen_test_1():
+    generators_print(num_generator(usr_input()))
 
 
 if __name__ == '__main__':
-    for i in num_generator(7):
-        print(i)
-
+    gpt_gen_test_1()
 
