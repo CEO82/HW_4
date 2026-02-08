@@ -24,3 +24,16 @@ for num in pipeline:
 100
 '''
 
+from itertools import count, takewhile
+
+def number_generator(last_number):
+    return takewhile(lambda x: x <= last_number, count(1, 1))
+
+
+
+
+
+if __name__ == '__main__':
+    print(number_generator(11))
+
+    pass
