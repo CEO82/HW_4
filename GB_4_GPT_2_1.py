@@ -19,3 +19,24 @@ B
 C
 End
 '''
+
+def sub_generator():
+    for l in ['A', 'B', 'C']:
+        yield l
+
+def main_generator():
+    yield 'start'
+    yield from sub_generator()
+    yield  'end'
+
+def generator_print(gen_obj):
+    for r in gen_obj:
+        print(r)
+
+def main_func_for_gen():
+    generator_print(main_generator())
+
+
+if __name__ == '__main__':
+    main_func_for_gen()
+    pass
