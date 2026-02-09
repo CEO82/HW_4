@@ -24,20 +24,17 @@ for num in pipeline:
 100
 '''
 
-from itertools import count, takewhile
-
-def generate_numbers():
-    for n in range(1, user_input() + 1):
+def generate_numbers(last_number):
+    for n in range(1, last_number + 1):
         yield n
 
-def filter_even():
-    for e in generate_numbers():
+def filter_even(number_list):
+    for e in number_list:
         if e % 2 == 0:
             yield e
 
-
-def square_numbers():
-    for s in filter_even():
+def square_numbers(filtered_list):
+    for s in filtered_list:
         yield s ** 2
 
 def user_input():
@@ -54,10 +51,8 @@ def user_input():
             print(f'Wrong enter, repeat')
             continue
 
-
-
 if __name__ == '__main__':
-    pipeline = square_numbers()
+    pipeline = square_numbers(filter_even(generate_numbers(user_input())))
     for num in pipeline:
         print(num)
 
