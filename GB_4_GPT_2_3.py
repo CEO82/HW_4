@@ -26,17 +26,38 @@ for num in pipeline:
 
 from itertools import count, takewhile
 
-def number_generator(last_number):
-    for n in range(1, last_number + 1):
+def generate_numbers():
+    for n in range(1, user_input() + 1):
         yield n
 
+def filter_even():
+    for e in generate_numbers():
+        if e % 2 == 0:
+            yield e
 
+
+def square_numbers():
+    for s in filter_even():
+        yield s ** 2
+
+def user_input():
+    while True:
+        try:
+            last_number = int(input(f'Enter last number -> '))
+            if last_number >= 1:
+                return last_number
+            else:
+                print(f'Wrong enter, repeat')
+                continue
+
+        except ValueError:
+            print(f'Wrong enter, repeat')
+            continue
 
 
 
 if __name__ == '__main__':
-    print(number_generator(11))
-    for i in number_generator(11):
-        print(i)
+    pipeline = square_numbers()
+    for num in pipeline:
+        print(num)
 
-    pass
