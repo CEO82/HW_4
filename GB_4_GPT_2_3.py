@@ -27,7 +27,8 @@ for num in pipeline:
 from itertools import count, takewhile
 
 def number_generator(last_number):
-    return takewhile(lambda x: x <= last_number, count(1, 1))
+    for n in range(1, last_number + 1):
+        yield n
 
 
 
@@ -35,5 +36,7 @@ def number_generator(last_number):
 
 if __name__ == '__main__':
     print(number_generator(11))
+    for i in number_generator(11):
+        print(i)
 
     pass
