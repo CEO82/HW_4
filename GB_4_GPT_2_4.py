@@ -14,17 +14,8 @@ tap НЕ должен менять данные
 Он только наблюдает.
 📌 Ожидаемое поведение pipeline
 Вот примерно так он должен собираться:
-pipeline = square_numbers(
-    tap(
-        filter_even(
-            tap(
-                generate_numbers(n),
-                "generate"
-            )
-        ),
-        "filter_even"
-    )
-)
+pipeline = square_numbers(tap(filter_even(tap(generate_numbers(n),"generate"
+)),"filter_even"))
 
 💡 Пример вывода
 
@@ -53,8 +44,40 @@ pipeline = square_numbers(
 понимать ленивость ещё глубже
 
 '''
+def user_input():
+    while True:
+        try:
+            last_number = int(input(f'Enter last number -> '))
+            if last_number >= 1:
+                return last_number
+            else:
+                print(f'Wrong enter, repeat')
+                continue
+
+        except ValueError:
+            print(f'Wrong enter, repeat')
+            continue
+
+def generate_numbers(last_number):
+    for n in range(1, last_number + 1):
+        yield n
+
+def filter_even(number_list):
+    for e in number_list:
+        if e % 2 == 0:
+            yield e
+
+def square_numbers(filtered_list):
+    for s in filtered_list:
+        yield s ** 2
+
+def tap(num_flow, lable):
+    for nf in num_flow:
+        print(f'{lable} -> {nf}')
+        yield nf
 
 
 if __name__ == '__main__':
-
-    pass
+    pipeline =  tap(square_numbers(tap(filter_even(tap(generate_numbers(user_input()), 'Generate')), 'Even filter')), 'Square numbers')
+    for res in pipeline:
+        pass
