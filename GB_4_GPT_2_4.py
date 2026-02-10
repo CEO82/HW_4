@@ -80,4 +80,4 @@ def tap(num_flow, lable):
 if __name__ == '__main__':
     pipeline =  tap(square_numbers(tap(filter_even(tap(generate_numbers(user_input()), 'Generate')), 'Even filter')), 'Square numbers')
     for res in pipeline:
-        pass
+        print(res)
