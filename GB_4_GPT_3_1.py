@@ -30,11 +30,13 @@ close() корректно завершает генератор.
 
 def accumulator():
     accum = 0
+    print(f'\n*****************\nAccumulator -> {accum}\n*****************')
     while True:
         x = yield
         accum = accum + x
         print(f'*****************\nReceived    -> {x}')
         print(f'Accumulator -> {accum}\n*****************')
+
 
 
 if __name__ == '__main__':
@@ -44,6 +46,6 @@ if __name__ == '__main__':
     gen.send(3)
     gen.send(5)
     gen.send(2)
+
     gen.close()
 
-    pass
