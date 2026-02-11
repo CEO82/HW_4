@@ -32,10 +32,11 @@ def accumulator():
     accum = 0
     print(f'\n*****************\nAccumulator -> {accum}\n*****************')
     while True:
-        x = yield
-        accum = accum + x
-        print(f'*****************\nReceived    -> {x}')
-        print(f'Accumulator -> {accum}\n*****************')
+        x = yield accum
+        if x != None:
+            accum += x
+            print(f'*****************\nReceived    -> {x}')
+            print(f'Accumulator -> {accum}\n*****************')
 
 
 
@@ -43,9 +44,9 @@ if __name__ == '__main__':
 
     gen = accumulator()
     next(gen)
-    gen.send(3)
+    '''gen.send(3)
     gen.send(5)
-    gen.send(2)
+    gen.send(2)'''
 
-    gen.close()
+    #gen.close()
 
