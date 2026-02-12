@@ -42,13 +42,24 @@ Closing accumulator...
 '''
 
 def logging_accumulator():
-
-    pass
-
-
-
+    accum = 0
+    print(f'\n*******************\nCurrent sum -> {accum}\n*******************')
+    try:
+        while True:
+            x = yield accum
+            if x != None:
+                accum += x
+                print(f'*******************\nReceived     -> {x}')
+                print(f'Current sum -> {accum}\n*******************')
+    except GeneratorExit:
+        print(f'*******************\nFinal sum -> {accum}\nGenerator is closing\n*******************')
 
 
 if __name__ == '__main__':
+    gen = logging_accumulator()
 
-    pass
+    next(gen)
+    gen.send(5)
+    gen.send(10)
+    gen.send(2)
+    gen.close()
