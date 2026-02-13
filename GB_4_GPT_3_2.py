@@ -47,12 +47,13 @@ def logging_accumulator():
     try:
         while True:
             x = yield accum
-            if x != None:
+            if x is not None:
                 accum += x
                 print(f'*******************\nReceived     -> {x}')
                 print(f'Current sum -> {accum}\n*******************')
     except GeneratorExit:
         print(f'*******************\nFinal sum -> {accum}\nGenerator is closing\n*******************')
+        return
 
 
 if __name__ == '__main__':
