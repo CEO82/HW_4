@@ -53,7 +53,7 @@ def logging_accumulator():
                 print(f'Current sum -> {accum}\n*******************')
     except GeneratorExit:
         print(f'*******************\nFinal sum -> {accum}\nGenerator is closing\n*******************')
-        return
+        return print('Generator is closed')
 
 
 if __name__ == '__main__':
