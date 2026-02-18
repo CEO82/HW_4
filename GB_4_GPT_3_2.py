@@ -51,6 +51,7 @@ def logging_accumulator():
                 accum += x
                 print(f'*******************\nReceived     -> {x}')
                 print(f'Current sum -> {accum}\n*******************')
+
     except GeneratorExit:
         print(f'*******************\nFinal sum -> {accum}\nGenerator is closing\n*******************')
         return print('Generator is closed')
@@ -61,6 +62,11 @@ if __name__ == '__main__':
 
     next(gen)
     gen.send(5)
+
     gen.send(10)
     gen.send(2)
-    gen.close()
+    #gen.close()
+
+
+print("Program continues...")
+input("Press Enter...")

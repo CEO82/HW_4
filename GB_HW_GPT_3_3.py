@@ -32,5 +32,17 @@ print(...)
 
 '''
 
+def numbers_generator():
+    for n in [1, 2, 3]:
+        yield n
 
 
+def delegator():
+
+    pass
+
+
+
+if __name__ == '__main__':
+
+    pass
