@@ -38,11 +38,10 @@ def numbers_generator():
 
 
 def delegator():
-
-    pass
-
+    yield from numbers_generator()
+    print(f'numbers finished')
 
 
 if __name__ == '__main__':
-
-    pass
+    for i in delegator():
+        print(i)
