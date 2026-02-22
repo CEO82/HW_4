@@ -42,7 +42,6 @@ def delegator():
     print(f'numbers finished')
 
 
-
 if __name__ == '__main__':
     for i in delegator():
         print(i)
