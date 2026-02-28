@@ -35,10 +35,12 @@ print(...)
 def numbers_generator():
     for n in [1, 2, 3]:
         yield n
+    return 'Done !'
 
 
 def delegator():
-    yield from numbers_generator()
+    result = yield from numbers_generator()
+    print(result)
     print(f'numbers finished')
 
 
