@@ -66,7 +66,7 @@ if __name__ == '__main__':
     gen.send(10)
     gen.send(2)
     #gen.close()
-
+    #del gen
 
 print("Program continues...")
 input("Press Enter...")
