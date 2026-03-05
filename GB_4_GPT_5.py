@@ -32,7 +32,16 @@ Counter stopped
 '''
 
 
+def pausable_counter():
+    numbers_list = [1, 2, 3, 4, 5, 6]
+    while True:
 
+
+        pass
+
+
+
+    pass
 
 
 
