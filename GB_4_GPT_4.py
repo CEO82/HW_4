@@ -54,7 +54,7 @@ def gen_control():
             #print('You entered something wrong, please repeat')
             gen.throw(ValueError)
             continue
-        print(num_input)
+
         gen.send(num_input)
 
 if __name__ == '__main__':
