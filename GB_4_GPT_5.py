@@ -33,23 +33,47 @@ Counter stopped
 
 
 def pausable_counter():
-    numbers_list = [1, 2, 3, 4, 5, 6]
-    while True:
+
+    i = 1
+    while i <= 10:
 
 
-        pass
+        try:
+
+            yield i
+            i += 1
 
 
+        except RuntimeError:
+            print(f'Function is on pause')
 
-    pass
+        except StopIteration:
+            print(f'Generator is finishing')
+            print(f'Final number is {i}')
+            break
 
-
-
-
+        except GeneratorExit:
+            print(f'Generator is finishing')
+            print(f'Final number is {i}')
+            break
 
 
 
 if __name__ == '__main__':
+    gen = pausable_counter()
+
+    print(next(gen))
+    print(next(gen))
+    print(next(gen))
+    gen.throw(RuntimeError)
+    print(next(gen))
+    gen.throw(StopIteration)
 
 
-    pass
+
+    #gen.close()
+    #print(next(gen))
+
+
+
+

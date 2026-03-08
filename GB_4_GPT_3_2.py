@@ -62,11 +62,13 @@ if __name__ == '__main__':
 
     next(gen)
     gen.send(5)
-
+    gen.close()
     gen.send(10)
+    #gen.throw(GeneratorExit)
     gen.send(2)
     #gen.close()
     #del gen
+
 
 print("Program continues...")
 input("Press Enter...")
