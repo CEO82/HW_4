@@ -46,9 +46,10 @@ def pausable_counter():
 
         except RuntimeError:
             print(f'Function is on pause')
+            i += 1
 
 
-        except GeneratorExit:
+        except StopIteration:
             print(f'Generator is finishing')
             print(f'Final number is {i}')
             return
@@ -63,7 +64,7 @@ if __name__ == '__main__':
         print(next(gen))
         gen.throw(RuntimeError)
         print(next(gen))
-        gen.close()
+        gen.throw(StopIteration)
         print(next(gen))
         print(next(gen))
 
