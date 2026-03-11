@@ -39,7 +39,7 @@ close() можно ловить через GeneratorExit
 def logging_accumulator():
 
     total = 0
-    x = None
+    x = 'No Input!'
     print(f'Accumulator had started\nTotal sum is {total}')
 
     while True:
@@ -49,26 +49,54 @@ def logging_accumulator():
             x = yield total
             if x is not None:
                 total += x
+                print(f'*******************\nReceived     -> {x}')
+                print(f'Current sum -> {total}\n*******************')
 
 
         except GeneratorExit:
             print(f'Accumulator is finishing\nlast input was {x}\nTotal summ is {total}')
+            print(f'Accumulator had finished')
             return
 
         except ValueError:
             print(f'Invalid value, skipping')
+            print(f'\nTotal summ is {total}\n')
 
 
 def gen_control():
     gen_launch = logging_accumulator()
     next(gen_launch)
+    while True:
+
+        start_close = input(f'If you want start or continue program input Y or y'
+                            f'\nif you want to close program input any other symbol -> ')
+
+        if start_close.lower() != 'y':
+
+            gen_launch.close()
+            return
+
+        else:
+
+            try:
+
+                num_input = float(input(f'Input number to store in Accumulator -> '))
 
 
-    pass
+
+            except ValueError:
+
+                gen_launch.throw(ValueError)
+                continue
+
+            gen_launch.send(num_input)
+
+
+
+
 
 
 
 if __name__ == '__main__':
     gen_control()
 
-    pass
