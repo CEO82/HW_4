@@ -40,7 +40,6 @@ def logging_accumulator():
 
     total = 0
     x = 'No Input!'
-    print(f'Accumulator had started\nTotal sum is {total}')
 
     while True:
 
@@ -49,8 +48,6 @@ def logging_accumulator():
             x = yield total
             if x is not None:
                 total += x
-                print(f'*******************\nReceived     -> {x}')
-                print(f'Current sum -> {total}\n*******************')
 
 
         except GeneratorExit:
@@ -65,7 +62,9 @@ def logging_accumulator():
 
 def gen_control():
     gen_launch = logging_accumulator()
-    next(gen_launch)
+    print(f'Accumulator had started\nTotal sum is {next(gen_launch)}')
+
+
     while True:
 
         start_close = input(f'If you want start or continue program input Y or y'
@@ -82,19 +81,12 @@ def gen_control():
 
                 num_input = float(input(f'Input number to store in Accumulator -> '))
 
-
-
             except ValueError:
 
                 gen_launch.throw(ValueError)
                 continue
-
-            gen_launch.send(num_input)
-
-
-
-
-
+            print(f'*******************\nReceived     -> {num_input}')
+            print(f'Current sum -> {gen_launch.send(num_input)}\n*******************')
 
 
 if __name__ == '__main__':
