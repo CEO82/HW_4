@@ -42,14 +42,42 @@ print(g.send(3))       # 3
 
 '''
 
+def subgen():
+    total = 0
+    while True:
+        cmd = yield total
+        if isinstance(cmd,(int, float)) and not isinstance(cmd, bool):
+            total += cmd
+        else:
+            if isinstance(cmd, str):
+                cmd_lower = cmd.lower()
+                if cmd_lower == 'get':
+                    continue
+                elif cmd_lower == 'reset':
+                    total = 0
+
+                elif cmd_lower == 'stop':
+                    return total
+                else:
+                    print(f'Wrong command')
+            else:
+                print(f'Wrong input')
 
 
 
+def main_gen():
 
-
+    result = yield from subgen()
+    yield result
 
 
 if __name__ == '__main__':
 
-
-    pass
+    g = main_gen()
+    print(next(g))  # старт
+    print(g.send(5))  # 5
+    print(g.send(10))  # 15
+    print(g.send('get'))  # 15
+    print(g.send('reset'))  # 0
+    print(g.send(3))  # 3
+    print(g.send('stop'))
