@@ -1,54 +1,53 @@
 
-'''
-def change(func):
 
-    def wrapper():
-        print("Before")
-        func()
-        print("After")
+import asyncio
 
-    return wrapper
-
-
-def hello():
-    print("Hello")
-
-
-hello = change(hello)
-
-hello()
-hello()
-
-'''
-
-'''change(hello())
-
-hello()'''
-
-def auto_start(gen_func):
-
-    def wrapper(*args, **kwargs):
-
-        gen = gen_func(*args, **kwargs)
-        next(gen)
-        return gen
-
-    return wrapper
-
-
-@auto_start
-def accumulator():
-
+async def worker(name, queue):
     total = 0
 
     while True:
-        x = yield total
+        cmd, delay = await queue.get()
 
-        if x is not None:
-            total += x
+        await asyncio.sleep(delay)
+
+        if isinstance(cmd, (int, float)):
+            total += cmd
+            print(f'{name}: total = {total}')
+
+        elif cmd == 'get':
+            print(f'{name}: total = {total}')
+
+        elif cmd == 'reset':
+            total = 0
+            print(f'{name}: reset to 0')
+
+        queue.task_done()
 
 
-gen2 = accumulator()
+async def main():
+    queue = asyncio.Queue()
 
-print(gen2.send(5))
-print(gen2.send(3))
+    # добавляем задачи
+    commands = [
+        (7, 1),
+        (11, 2),
+        ('get', 1),
+        (35, 2),
+        ('reset', 1),
+    ]
+
+    for item in commands:
+        await queue.put(item)
+
+    # запускаем воркер
+    task = asyncio.create_task(worker("Calc A", queue))
+
+    # ждём пока очередь обработается
+    await queue.join()
+
+    task.cancel()
+
+asyncio.run(main())
+
+
+
